@@ -1,0 +1,44 @@
+.accordion
+	.accordion--content
+		display: none
+		padding: 11px 0 33px 0
+		max-width: 360px
+		img
+			max-width: 360px
+
+	.accordion--header
+		display: flow-root
+		line-height: $bar-height
+
+	.accordion--togggle
+		position: relative
+		float: right
+		user-select: none
+		cursor: pointer
+		opacity: 1
+		transition: $transition
+		margin: 8px 0
+		&:hover
+			transition: $transition
+			opacity: 0.5
+
+	.accordion--open,
+	.accordion--close
+		position: absolute
+		top: 0
+		right: 0
+
+	.accordion--open
+		display: block
+	.accordion--close
+		display: none
+
+.open
+	.accordion--content
+		display: block
+	.accordion--header
+		border-bottom: 1px solid $light-gray
+	.accordion--open
+		display: none
+	.accordion--close
+		display: block

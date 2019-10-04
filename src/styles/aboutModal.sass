@@ -1,0 +1,44 @@
+.about
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	border: 0
+	background: transparentize($light-gray, 0.1)
+
+.about--modal
+	position: fixed
+	left: 50%
+	top: 50%
+	transform: translate(-50%, -50%)
+	background: $white
+	padding: $spacer * 2
+	width: 530px
+	height: 400px
+
+	li
+		border-top: 1px solid $light-gray
+		&:last-of-type
+			border-bottom: 1px solid $light-gray
+
+.about--header
+	display: flow-root
+	margin-bottom: $spacer * 2
+	width: 100%
+	background: $white
+	h2
+		float: left
+		line-height: 24px
+	.about--close
+		float: right
+		cursor: pointer
+		transition: $transition
+		opacity: 1
+		&:hover
+			transition: $transition
+			opacity: 0.5
+.accordion
+	list-style: none
+	overflow-y: scroll
+	height: calc(100% - 60px)

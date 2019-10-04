@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+	head
+		title The tic-tac-toe solution space
+		include components/metaSocial.pug
+		link(rel="stylesheet", href="styles/main.sass")
+	body
+		include svgs/symbols.svg
+		include components/header.pug
+		main
+			include svgs/visualization.svg
+			include components/instructions.pug
+		include components/footer.pug
+		include components/aboutModal.pug
+		script(src="scripts/main.js")
