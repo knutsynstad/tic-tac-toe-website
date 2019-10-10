@@ -9,8 +9,11 @@
 			margin: $line-height-px 0 ($line-height-px * 2)
 
 	.accordion--header
-		display: flow-root
 		line-height: $bar-height
+		&::after
+			content: ""
+			display: table
+			clear: both
 
 	.accordion--togggle
 		position: relative
