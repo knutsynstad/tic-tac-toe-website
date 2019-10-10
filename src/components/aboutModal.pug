@@ -1,15 +1,15 @@
 mixin toggle
 	.accordion--togggle
-		svg.accordion--open.icon
+		svg(xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg").accordion--open.icon
 			use(xlink:href='#icon-arrow-down')
-		svg.accordion--close.icon
+		svg(xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg").accordion--close.icon
 			use(xlink:href='#icon-arrow-up')
 
 dialog.about
 	.about--modal
 		.about--header
 			h2 About
-			svg.about--close.icon
+			svg(xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg").about--close.icon
 				use(xlink:href='#icon-close')
 		ol.accordion
 			li 
@@ -25,7 +25,7 @@ dialog.about
 				.accordion--header Understanding and representing the game
 					+toggle
 				.accordion--content
-					p Most of us have played tic-tac-toe at some point or another in our lives. It's a deceptively simple game. Two players claim unique symbols (X or O) before taking alternating turns in placing that symbol in an available cell within a 3-by-3 grid. The first player to get their 3 symbols in a row, either cardinally or diagonally, wins.
+					p Most of us have played tic-tac-toe at some point or another in our lives. It's a deceptively simple game. Two players claim unique symbols (<code>X</code> or <code>O</code>) before taking alternating turns in placing that symbol in an available cell within a 3-by-3 grid. The first player to get their 3 symbols in a row, either cardinally or diagonally, wins.
 
 					p End conditions are clear; either a player wins or the game is a draw. The myriad of ways of getting there is what makes the game fun. But what does the solution to tic-tac-toe look like? Drawing a single winning combination does not do justice to the complexity of the game.
 
@@ -76,3 +76,18 @@ dialog.about
 					h3 138 × Highlighted boards
 					p Highlights describe a game’s end state. Colorized cell backgrounds indicate a winning line, while a full board background indicates a draw.
 					img(src="images/highlight.png" alt="Highlights describing game outcome")
+			li 
+				.accordion--header Acknowledgements
+					+toggle
+				.accordion--content
+					h3 Design
+					p <a href="http://linkedin.com/in/marinampt">Marina Menéndez-Pidal</a>, <a href="https://twitter.com/knutsynstad">Knut Synstad</a>
+
+					h3 Creative direction
+					p <a href="https://twitter.com/DubberlyDesign">Hugh Dubberly</a>
+
+					h3 Algorithms
+					a(href="https://twitter.com/knutsynstad") Knut Synstad
+
+					p <a href="http://www.dubberly.com/">Dubberly Design Office</a><br />2501 Harrison Street, #7<br />San Francisco, CA 94110
+					a(href="tel:+1-415-648-9799") +1 415 648 9799

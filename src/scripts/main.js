@@ -18,7 +18,7 @@ function zoomed() {
   updateTickMarks(transform);
 }
 
-const svg = d3.select('#root');
+const svg = d3.select('main svg');
 
 const container = svg.select('g')
   .attr('transform', `translate(${xOffset}, ${yOffset}) scale(1)`);
@@ -29,3 +29,5 @@ svg.call(zoom)
 initAboutModal();
 initAccordion();
 initTickMarks();
+
+console.log('Tic Tac Toe!');
