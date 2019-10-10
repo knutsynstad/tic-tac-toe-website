@@ -9,7 +9,7 @@ const yOffset = initialPosition();
 
 
 const zoom = d3.zoom()
-  .scaleExtent([0.3, 3])
+  .scaleExtent([0.1, 3])
   .on('zoom', zoomed);
 
 function zoomed() {
