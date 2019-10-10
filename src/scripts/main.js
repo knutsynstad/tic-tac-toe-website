@@ -29,5 +29,3 @@ svg.call(zoom)
 initAboutModal();
 initAccordion();
 initTickMarks();
-
-console.log('Tic Tac Toe!');
