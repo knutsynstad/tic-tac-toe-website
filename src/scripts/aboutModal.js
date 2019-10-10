@@ -1,10 +1,17 @@
 const aboutModal = document.querySelector('.about');
-const aboutOpen = document.querySelector('.about--open');
-const aboutClose = document.querySelector('.about--close');
+const affordances = [
+  '.about--open',
+  '.about--close',
+  '.about--tint',
+];
 
 const initAboutModal = () => {
-  aboutOpen.addEventListener('click', () => aboutModal.classList.toggle('hidden'));
-  aboutClose.addEventListener('click', () => aboutModal.classList.toggle('hidden'));
+  affordances.forEach((affordance) => {
+    const element = document.querySelector(affordance);
+    element.addEventListener('click', () => {
+      aboutModal.classList.toggle('hidden');
+    });
+  });
 };
 
 module.exports = initAboutModal;
