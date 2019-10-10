@@ -1,7 +1,12 @@
 import * as d3 from 'd3';
-import updateTickMarks from './tickMarks';
+import { initTickMarks, updateTickMarks } from './tickMarks';
 import initAboutModal from './aboutModal';
 import initAccordion from './accordion';
+import initialPosition from './initialPosition';
+
+const xOffset = 15;
+const yOffset = initialPosition();
+
 
 const zoom = d3.zoom()
   .scaleExtent([0.3, 3])
@@ -13,10 +18,14 @@ function zoomed() {
   updateTickMarks(transform);
 }
 
-const svg = d3.select('#root')
-  .call(zoom);
+const svg = d3.select('#root');
 
-const container = svg.select('g');
+const container = svg.select('g')
+  .attr('transform', `translate(${xOffset}, ${yOffset}) scale(1)`);
+
+svg.call(zoom)
+  .call(zoom.transform, d3.zoomIdentity.translate(xOffset, yOffset).scale(1));
 
 initAboutModal();
 initAccordion();
+initTickMarks();
