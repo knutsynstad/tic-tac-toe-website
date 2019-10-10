@@ -21,7 +21,10 @@ header
 	border-bottom: 1px solid $light-gray
 	background: $background
 	line-height: $bar-height
-	display: flow-root
+	&::after
+		content: ""
+		display: table
+		clear: both
 
 	h1
 		font:
