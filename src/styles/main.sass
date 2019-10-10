@@ -72,19 +72,19 @@ header
 
 a
 	text-decoration: none
-	color: $gray
+	color: $black
 	transition: $transition
 	cursor: pointer
 	&:visited
 		text-decoration: none
-		color: $gray
+		color: $black
 	&:hover
 		transition: $transition
-		color: $black
+		color: $gray
 	&.noLink
 		cursor: default
 		&:hover
-			color: $gray
+			color: $black
 
 footer
 	position: fixed
@@ -103,6 +103,7 @@ footer
 		li
 			display: inline-block
 			position: relative
+			color: $gray
 			&::after
 				content: ' '
 				position: absolute
