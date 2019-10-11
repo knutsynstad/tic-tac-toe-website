@@ -3,6 +3,7 @@ import { initTickMarks, updateTickMarks } from './tickMarks';
 import initAboutModal from './aboutModal';
 import initAccordion from './accordion';
 import initialPosition from './initialPosition';
+import { toggleNavigation, initNavigation } from './navigation';
 
 const xOffset = 15;
 const yOffset = initialPosition();
@@ -26,6 +27,7 @@ const container = svg.select('g')
 svg.call(zoom)
   .call(zoom.transform, d3.zoomIdentity.translate(xOffset, yOffset).scale(1));
 
+initNavigation();
 initAboutModal();
 initAccordion();
 initTickMarks();
