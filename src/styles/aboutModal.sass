@@ -22,7 +22,8 @@
 	transform: translate(-50%, -50%)
 	background: $white
 	padding: $spacer * 2
-	width: 550px
+	width: 100%
+	max-width: 550px
 	height: 550px
 
 	li
@@ -60,3 +61,7 @@
 	.person,
 	.person:last-of-type
 		border: 0
+
+.accordion--content
+	width: calc(100% - 39px)
+	max-width: 360px

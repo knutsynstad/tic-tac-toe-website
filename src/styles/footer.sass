@@ -1,0 +1,26 @@
+footer
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  height: $bar-height
+  border-top: 1px solid $light-gray
+  background: $background
+  line-height: $bar-height
+  user-select: none
+
+  ul
+    list-style: none
+    white-space: nowrap
+    li
+      display: inline-block
+      position: relative
+      color: $gray
+      &::after
+        content: ' '
+        position: absolute
+        left: 0
+        top: 0
+        height: 8px
+        width: 1px
+        background: $light-gray

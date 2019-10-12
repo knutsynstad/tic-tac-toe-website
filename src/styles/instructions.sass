@@ -1,0 +1,21 @@
+.instructions
+  position: fixed
+  bottom: $bar-height + $spacer
+  left: $spacer
+  color: $gray
+  user-select: none
+  animation:
+    name: fadeout
+    duration: 1s
+    timing-function: ease
+    delay: 10s
+    iteration-count: 1
+    fill-mode: forwards
+  span
+    display: block
+
+@keyframes fadeout
+  from
+    opacity: 1
+  to
+    opacity: 0

@@ -3,6 +3,8 @@
 @import aboutModal
 @import accordion
 @import header
+@import instructions
+@import footer
 
 body
 	font:
@@ -12,55 +14,6 @@ body
 	background: $white
 	line-height: $line-height
 	overflow: hidden
-
-footer
-	position: fixed
-	bottom: 0
-	left: 0
-	right: 0
-	height: $bar-height
-	border-top: 1px solid $light-gray
-	background: $background
-	line-height: $bar-height
-	user-select: none
-
-	ul
-		list-style: none
-		white-space: nowrap
-		li
-			display: inline-block
-			position: relative
-			color: $gray
-			&::after
-				content: ' '
-				position: absolute
-				left: 0
-				top: 0
-				height: 8px
-				width: 1px
-				background: $light-gray
-
-.instructions
-	position: fixed
-	bottom: $bar-height + $spacer
-	left: $spacer
-	color: $gray
-	user-select: none
-	animation:
-		name: fadeout
-		duration: 1s
-		timing-function: ease
-		delay: 10s
-		iteration-count: 1
-		fill-mode: forwards
-	span
-		display: block
-
-@keyframes fadeout
-	from
-		opacity: 1
-	to
-		opacity: 0
 
 main svg
 	height: 100vh
