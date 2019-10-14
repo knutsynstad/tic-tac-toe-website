@@ -21,9 +21,9 @@ mixin toggle
 
 					p Advancements in computing and AI are now fundamentally changing design practice. These changes have significant implications for design education and continuing education. For example, it seems clear that designers will need to become familiar with programming, using data, and doing analysis to discover and visualize patterns and relationships. Like many aspects of modern society, design practice is becoming data-driven, too.
 
-					p In this poster, we examine what Herbert Simon might call the "solution space" for tic-tac-toe, a compound visualization of all its solutions&mdash;every legal game move and the connections between them in a single artifact.
+					p Here, we examine what Herbert Simon might call the "solution space" for tic-tac-toe, a compound visualization of all its solutions&mdash;every legal game move and the connections between them in a single artifact.
 			li 
-				.accordion--header Understanding and representing the game
+				.accordion--header Gameplay
 					+toggle
 				.accordion--content
 					p Most of us have played tic-tac-toe at some point or another in our lives. It's a deceptively simple game. Two players claim unique symbols (<code>X</code> or <code>O</code>) before taking alternating turns in placing that symbol in an available cell within a 3-by-3 grid. The first player to get their 3 symbols in a row, either cardinally or diagonally, wins.
@@ -32,30 +32,21 @@ mixin toggle
 
 					p Instead, imagine a map of all possible paths from blank board to finished game. We might call this the "solution space" for tic-tac-toe, where each path is but one way to navigate through it.
 			li 
-				.accordion--header Determining the solution space size
+				.accordion--header Solution space size
 					+toggle
 				.accordion--content
 					p For the first move, there are 9 cells available. For the second, there are 8, and so on. Follow this to completion and we get <code>9&times;8&times;7&times;6&times;5&times;4&times;3&times;2&times;1</code> or <code>9!</code> boards. For each level <code>n</code> of gameplay, there are <code>9!/(9-n)!</code> combinations. By adding the level totals together, we get an "upper bound" of 986,410 boards—far too many to represent meaningfully.
 
-					p For the visualization to be meaningful, we need to greatly reduce the number of boards. We do this by introducing 3 rules; (1) removing duplicate boards reduces the count to 6,046, (2) removing illegal moves reduces the count to 5,478, and (3) by removing symmetric duplicates (rotational and reflectional) we are left with 765 unique boards. This poster displays them all in a matrix.
-
-					p A board does not exist in isolation but is part of a larger sequence of gameplay. Below each board is a list of coordinates&mdash;its parents and children, the boards that precede and succeed it. Parents are listed before the bullet point, while children are afterward.
+					p For the visualization to be meaningful, we need to greatly reduce the number of boards. We do this by introducing 3 rules; (1) removing duplicate boards reduces the count to 6,046, (2) removing illegal moves reduces the count to 5,478, and (3) by removing symmetric duplicates (rotational and reflectional) we are left with 765 unique boards. This visualization displays all boards and the connections beween them.
 			li 
-				.accordion--header Generating the solution space
+				.accordion--header Generating the dataset
 					+toggle
 				.accordion--content
 					p The underlying dataset was created using two ordered lists, a processing queue, and a collection. We begin by seeding the queue with a blank board. While there are still boards in the queue, do the following:
 
 					p Pull the first board <code>A</code> from the queue before generating new boards for all possible combinations for the next step. Compare the new boards against both the queue and the collection to see if it already exists. If it does not exist, add it to the queue, and if it does exist, discard it. <code>Board A</code> is then moved to the collection.
 			li 
-				.accordion--header Poster versus website
-					+toggle
-				.accordion--content
-					p Due to the paper size constraint, the poster displays the boards in a matrix. Parents are listed before the bullet point, while children are afterward. The poster is shown the way it is to reduce the number of boards visualized. In this method, the connections between the boards are deemphasized. The web does not have a size constraint&mdash;there is an infinite canvas. Not only is the size infinite but it can also change over time or through iteration. This would not be possible in a printed artifact. Therefore, connections between the all of the boards are emphasized. 
-
-					p: a(href="") Download poster PDF
-			li 
-				.accordion--header Legend for board states
+				.accordion--header Legend
 					+toggle
 				.accordion--content
 					h3 126 &times; Black boards
@@ -77,6 +68,18 @@ mixin toggle
 					h3 138 &times; Highlighted boards
 					p Highlights describe a game's end state. Colorized cell backgrounds indicate a winning line, while a full board background indicates a draw.
 					img(src="images/highlight.png" alt="Highlights describing game outcome")
+			li 
+				.accordion--header Companion poster
+					+toggle
+				.accordion--content
+					p While the web provides an infinite canvas for expression, we can only see so much as time through the viewport "keyhole." This infinite canvas enables us to display all the boards and all connections between them in a single oversized artifact. Through interactive controls, the user can both pan and zoom to maneuver modify what's visible through the keyhole.
+
+					p Given the size, it becomes near impossible to print. It begs the question, what might the same solution space look like as a poster? A smaller canvas requires a fundamentally different approach. By reversing the emphasis from connections to boards, boards can be packed tightly in a matrix.
+
+					p Each board's location within the matrix gives it a unique coordinate. Instead of showing connections between boards as lines, they appear as a list of coordinates below each board. A board's parents are listed before the bullet point, while children are afterward.
+
+					img(src="images/poster.png" alt="The tic-tac-toe solution space poster").stroke
+					p: a(href="#0") Download poster (PDF)
 			li 
 				.accordion--header Acknowledgements
 					+toggle
