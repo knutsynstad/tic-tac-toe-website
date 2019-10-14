@@ -4,6 +4,7 @@ import initAboutModal from './aboutModal';
 import initAccordion from './accordion';
 import initialPosition from './initialPosition';
 import { toggleNavigation, initNavigation } from './navigation';
+import initHoverStates from './initHoverStates';
 
 const xOffset = 15;
 const yOffset = initialPosition();
@@ -31,3 +32,4 @@ initNavigation();
 initAboutModal();
 initAccordion();
 initTickMarks();
+initHoverStates();
