@@ -35,9 +35,9 @@ mixin toggle
 				.accordion--header Solution space size
 					+toggle
 				.accordion--content
-					p For the first move, there are 9 cells available. For the second, there are 8, and so on. Follow this to completion and we get <code>9&times;8&times;7&times;6&times;5&times;4&times;3&times;2&times;1</code> or <code>9!</code> boards. For each level <code>n</code> of gameplay, there are <code>9!/(9-n)!</code> combinations. By adding the level totals together, we get an "upper bound" of 986,410 boards—far too many to represent meaningfully.
+					p For the first move, there are 9 cells available. For the second, there are 8, and so on. Follow this to completion and we get <code>9&times;8&times;7&times;6&times;5&times;4&times;3&times;2&times;1</code> or <code>9!</code> boards. For each level <code>n</code> of gameplay, there are <code>9!/(9-n)!</code> combinations. By adding the level totals together, we get an "upper bound" of 986,410 boards&mdash;far too many to represent meaningfully.
 
-					p For the visualization to be meaningful, we need to greatly reduce the number of boards. We do this by introducing 3 rules; (1) removing duplicate boards reduces the count to 6,046, (2) removing illegal moves reduces the count to 5,478, and (3) by removing symmetric duplicates (rotational and reflectional) we are left with 765 unique boards. This visualization displays all boards and the connections beween them.
+					p For the visualization to be meaningful, we need to greatly reduce the number of boards. We do this by introducing 3 rules; (1) removing duplicate boards reduces the count to 6,046, (2) removing illegal moves reduces the count to 5,478, and (3) by removing symmetric duplicates (rotational and reflectional) we are left with 765 unique boards. This visualization displays all boards and the connections between them.
 			li 
 				.accordion--header Generating the dataset
 					+toggle
