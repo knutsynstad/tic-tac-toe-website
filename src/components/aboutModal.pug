@@ -13,66 +13,68 @@ mixin toggle
 			svg(xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg").about--close.icon
 				use(xlink:href='#icon-close')
 		ol.accordion
-			li 
+			li
 				.accordion--header Introduction
 					+toggle
 				.accordion--content
-					p Traditionally, much of what designers have been called upon to do revolves around giving form to artifacts&mdash;a thin veneer on top of existing products and services.
+					p In this visualization, we examine what Herbert Simon might call the &#8220;solution space&#8221; for tic-tac-toe, a compound visualization of all its solutions&mdash;every legal game move and the connections between them&mdash;in a single artifact.
 
-					p Advancements in computing and AI are now fundamentally changing design practice. These changes have significant implications for design education and continuing education. For example, it seems clear that designers will need to become familiar with programming, using data, and doing analysis to discover and visualize patterns and relationships. Like many aspects of modern society, design practice is becoming data-driven, too.
-
-					p Here, we examine what Herbert Simon might call the "solution space" for tic-tac-toe, a compound visualization of all its solutions&mdash;every legal game move and the connections between them in a single artifact.
-			li 
+					p Design for manufacture involves finding an optimal point in a solution space&mdash;or at least a point that &#8220;satisfices.&#8221; Design for interaction involves defining a range within a solution space.
+			li
 				.accordion--header Gameplay
 					+toggle
 				.accordion--content
-					p Most of us have played tic-tac-toe at some point or another in our lives. It's a deceptively simple game. Two players claim unique symbols (<code>X</code> or <code>O</code>) before taking alternating turns in placing that symbol in an available cell within a 3-by-3 grid. The first player to get their 3 symbols in a row, either cardinally or diagonally, wins.
+					p Most of us have played tic-tac-toe. It's a deceptively simple game. Two players claim unique symbols (<code>X</code> or <code>O</code>) before alternating turns in placing their symbol in an empty cell within a 3-by-3 grid. The first player to place 3 of their symbols in a row, either cardinally or diagonally, wins.
 
-					p End conditions are clear; either a player wins or the game is a draw. The myriad of ways of getting there is what makes the game fun. But what does the solution to tic-tac-toe look like? Drawing a single winning combination does not do justice to the complexity of the game.
+					p End conditions are clear; either a player wins, or the game is a draw. The myriad ways of getting there are what makes the game fun. But what does the solution to tic-tac-toe look like? Drawing a single winning combination does not do justice to the complexity of the game.
 
-					p Instead, imagine a map of all possible paths from blank board to finished game. We might call this the "solution space" for tic-tac-toe, where each path is but one way to navigate through it.
-			li 
+					p Instead, imagine a map of all possible paths from blank board to finished game. We might call this the &#8220;solution space&#8221; for tic-tac-toe, where each path is but one way to navigate through the space.
+			li
 				.accordion--header Solution space size
 					+toggle
 				.accordion--content
-					p For the first move, there are 9 cells available. For the second, there are 8, and so on. Follow this to completion and we get <code>9&times;8&times;7&times;6&times;5&times;4&times;3&times;2&times;1</code> or <code>9!</code> boards. For each level <code>n</code> of gameplay, there are <code>9!/(9-n)!</code> combinations. By adding the level totals together, we get an "upper bound" of 986,410 boards&mdash;far too many to represent meaningfully.
+					p For the first move, there are 9 cells available. For the second, there are 8, and so on. Follow to completion, and we get <code>9&times;8&times;7&times;6&times;5&times;4&times;3&times;2&times;1</code> or <code>9!</code> boards for the final level. For each level <code>n</code> of gameplay, there are <code>9!/(9-n)!</code> boards in total. By adding the level totals together, we get an &#8220;upper bound&#8221; of 986,410 boards&mdash;far too many to represent meaningfully.
 
-					p For the visualization to be meaningful, we need to greatly reduce the number of boards. We do this by introducing 3 rules; (1) removing duplicate boards reduces the count to 6,046, (2) removing illegal moves reduces the count to 5,478, and (3) by removing symmetric duplicates (rotational and reflectional) we are left with 765 unique boards. This visualization displays all boards and the connections between them.
-			li 
+					p For the visualization to be meaningful, the number of boards must be reduced. We do this by introducing 3 rules; (1) removing duplicate boards reduces the count to 6,046, (2) removing illegal moves (play after a win) reduces the count to 5,478, and (3) by removing symmetric duplicates (rotational and reflectional) we are left with 765 unique boards. This poster displays them all in a matrix.
+
+					p A board does not exist in isolation but is part of a larger sequence of gameplay. Below each board is a list of coordinates (positions in the matrix)&mdash;its parents and children, the boards that precede and succeed it. Parents are listed before the bullet point, while children are afterward.
+			li
 				.accordion--header Generating the dataset
 					+toggle
 				.accordion--content
-					p The underlying dataset was created using two ordered lists, a processing queue, and a collection. We begin by seeding the queue with a blank board. While there are still boards in the queue, do the following:
+					p As rules are introduced to restrict the size of the solution space, some filtering is required. Filtering can occur either during the generation, in a &#8220;filter-as-you-go&#8221; approach, or afterward. Our algorithm filters during generation by using two ordered lists, a processing queue, and a final collection for storing game boards. To begin, we seed the processing queue with a blank board.
 
-					p Pull the first board <code>A</code> from the queue before generating new boards for all possible combinations for the next step. Compare the new boards against both the queue and the collection to see if it already exists. If it does not exist, add it to the queue, and if it does exist, discard it. <code>Board A</code> is then moved to the collection.
-			li 
+					p While there are boards left in the processing queue, pull the first board <code>a</code> from the queue to generate candidate boards for the next move. Compare each candidate board against both the processing queue and the final collection to determine its uniqueness.
+
+					p If a candidate board is unique, add it to the back of the processing queue so subsequent boards can be generated. If a candidate board already exists, flag the existing board based on its similarity to the candidate before discarding the candidate. The associated flag is what gives the boards their coloring. After generating, testing, and processing the candidates stemming from board <code>a</code>, move it to the collection.
+			li
 				.accordion--header Legend
 					+toggle
 				.accordion--content
 					h3 126 &times; Black boards
-					p Each black board has no transformational duplicates. However, one configuration may have many parents.
+					p Black boards represent configurations that may have duplicates, but no transformational duplicates. As a result, one configuration may have more than one parent.
 					img(src="images/original.png" alt="No transformational symmetry")
 
 					h3.blue 95 &times; Blue boards
-					p.blue Each blue board represents configurations exhibiting rotational symmetry&mdash;such as 90&deg;, 180&deg;, and 270&deg; rotations.
+					p.blue Blue boards represent configurations exhibiting rotational symmetry&mdash;such as 90&deg;, 180&deg;, and 270&deg; rotations.
 					img(src="images/rotation.gif" alt="Rotational symmetry")
 
 					h3.green 436 &times; Green boards
-					p.green Each green board represents configurations exhibiting reflectional symmetry&mdash;such as horizontal, vertical, diagonal, and counter diagonal reflections.
+					p.green Green boards represent configurations exhibiting reflectional symmetry&mdash;such as horizontal, vertical, diagonal, and counter diagonal reflections.
 					img(src="images/reflection.gif" alt="Reflectional symmetry")
 
 					h3.magenta 108 &times; Magenta boards
-					p.magenta Each magenta board configuration exhibiting a combination of rotational symmetry and reflectional symmetry.
+					p.magenta Magenta boards represent configurations exhibiting both rotational symmetry and reflectional symmetry.
 					img(src="images/both.gif" alt="Rotational and reflectional symmetry")
 
 					h3 138 &times; Highlighted boards
-					p Highlights describe a game's end state. Colorized cell backgrounds indicate a winning line, while a full board background indicates a draw.
+					p Highlights describe a game's end state. Colorized cell backgrounds indicate a winning line, while a full board background indicates a draw. We were surprised that there are only three draw states.
 					img(src="images/highlight.png" alt="Highlights describing game outcome")
-			li 
+			li
 				.accordion--header Companion poster
 					+toggle
 				.accordion--content
-					p While the web provides an infinite canvas for expression, we can only see so much as time through the viewport "keyhole." This infinite canvas enables us to display all the boards and all connections between them in a single oversized artifact. Through interactive controls, the user can both pan and zoom to maneuver modify what's visible through the keyhole.
+					p While the web provides an infinite canvas for expression, we can only see so much as time through the viewport &#8220;keyhole.&#8221; This infinite canvas enables us to display all the boards and all connections between them in a single oversized artifact. Through interactive controls, the user can both pan and zoom to maneuver modify what's visible through the keyhole.
 
 					p Given the size, it becomes near impossible to print. It begs the question, what might the same solution space look like as a poster? A smaller canvas requires a fundamentally different approach. By reversing the emphasis from connections to boards, boards can be packed tightly in a matrix.
 
@@ -80,8 +82,22 @@ mixin toggle
 
 					img(src="images/poster.png" alt="The tic-tac-toe solution space poster").stroke
 					p: a(href="#0") Download poster (PDF)
-			li 
-				.accordion--header Acknowledgements
+			li
+				.accordion--header Source code
+					+toggle
+				.accordion--content
+					p The source code for the website, poster, and underlying visualizations are available on GitHub:
+					ul.people
+						li.person
+							a(href="https://github.com/knutsynstad/tic-tac-toe") Repository 1: Dataset
+						li.person
+							a(href="https://github.com/knutsynstad/tic-tac-toe-poster") Repository 2: Poster visualization
+						li.person
+							a(href="https://github.com/knutsynstad/tic-tac-toe-connections") Repository 3: Website visualization
+						li.person
+							a(href="https://github.com/knutsynstad/tic-tac-toe-website") Repository 4: Website
+			li
+				.accordion--header Credits
 					+toggle
 				.accordion--content
 					h3 Design
@@ -96,10 +112,11 @@ mixin toggle
 						li.person
 							a(href="https://twitter.com/DubberlyDesign") Hugh Dubberly
 
-					h3 Algorithms
+					h3 Algorithms &amp; development
 					ul.people
 						li.person
 							a(href="https://twitter.com/knutsynstad") Knut Synstad
 
-					p <a href="http://www.dubberly.com/">Dubberly Design Office</a><br />2501 Harrison Street, #7<br />San Francisco, CA 94110
-					p: a(href="tel:+1-415-648-9799") +1 415 648 9799
+					p.faded Copyright &copy; 2019
+					p.faded <a href="http://www.dubberly.com/">Dubberly Design Office</a><br />2501 Harrison Street, #7<br />San Francisco, CA 94110
+					p.faded: a(href="tel:+1-415-648-9799") +1 415 648 9799

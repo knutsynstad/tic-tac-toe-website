@@ -7,6 +7,11 @@
 	border: 0
 	&.hidden
 		display: none
+	a
+		color: inherit
+		text-decoration: none
+		&:hover
+			color: $gray
 
 .about--tint
 	background: transparentize($light-gray, 0.1)
@@ -65,3 +70,8 @@
 .accordion--content
 	width: calc(100% - 39px)
 	max-width: 360px
+
+
+@media (max-height: 600px)
+	.about--modal
+		height: 450px

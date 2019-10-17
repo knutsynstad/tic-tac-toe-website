@@ -28,6 +28,21 @@ header
     display: inline-block
     padding: 0 $spacer
 
+  a
+    text-decoration: none
+    color: $black
+    transition: $transition
+    cursor: pointer
+    &:visited
+      text-decoration: none
+      color: $black
+    &:hover
+      transition: $transition
+      color: $gray
+    &.noLink
+      cursor: default
+      &:hover
+        color: $black
 
 .navigation
   li
@@ -56,21 +71,7 @@ header
     line-height: $bar-height
     border-top: 1px solid $light-gray
 
-a
-  text-decoration: none
-  color: $black
-  transition: $transition
-  cursor: pointer
-  &:visited
-    text-decoration: none
-    color: $black
-  &:hover
-    transition: $transition
-    color: $gray
-  &.noLink
-    cursor: default
-    &:hover
-      color: $black
+
 
 .navigation--toggle
   display: none
